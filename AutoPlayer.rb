@@ -1,12 +1,24 @@
 require 'Hand'
-class Player
+class AutoPlayer
   def initialize(playerName, chipAmount, card1, card2)
       @chipAmount = chipAmount
       @betAmount = 0
       @playerName = playerName
       @playerHand = Hand.new(card1,card2)
-      @cardSum = @playerHand.getSum()   
+      @cardSum = @playerHand.getSum() 
   end
+  
+  def getCardSum()
+    return @cardSum
+  end
+  
+  def makeMove()
+    if(@cardSum >= 17)
+      #stay
+    elsif(@cardSum < 17)
+      @playerHand.addCard()
+    end
+  end 
   
   def getPlayerName()
     return @playerName
@@ -32,5 +44,4 @@ class Player
   def win(num)
     @chipAmount = @chipAmount + num
   end
-  
 end
